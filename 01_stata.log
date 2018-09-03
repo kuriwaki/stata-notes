@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  3 SEP 2018 14:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  3 SEP 2018 14:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -853,7 +853,7 @@ Package grffile Info: \Gin@ii of package `graphicx' fixed on input line 486.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2001/04/09 non-zero parskip adjustments
 )
-No file 01_stata.aux.
+(./01_stata.aux)
 \openout1 = `01_stata.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
@@ -870,7 +870,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
 LaTeX Font Info:    ... okay on input line 72.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 72.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 72.
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 72.
@@ -912,6 +912,8 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 72.
 LaTeX Info: Redefining \pageref on input line 72.
 LaTeX Info: Redefining \nameref on input line 72.
+
+(./01_stata.out) (./01_stata.out)
 \@outlinefile=\write3
 \openout3 = `01_stata.out'.
 
@@ -990,12 +992,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-<statawindow.png, id=4, 1632.0975pt x 930.47626pt>
+<statawindow.png, id=64, 1632.0975pt x 930.47626pt>
 File: statawindow.png Graphic file (type png)
  <use statawindow.png>
 Package pdftex.def Info: statawindow.png used on input line 83.
-(pdftex.def)             Requested size: 310.50021pt x 177.01949pt.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 94.
+(pdftex.def)             Requested size: 241.49187pt x 137.6771pt.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 93.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1004,116 +1006,114 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./stata
 window.png>]
 [2] [3]
-Overfull \hbox (15.75003pt too wide) in paragraph at lines 259--259
+Overfull \hbox (15.75003pt too wide) in paragraph at lines 257--257
  []||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 |||[] 
  []
 
 
-Overfull \hbox (15.75003pt too wide) in paragraph at lines 262--262
+Overfull \hbox (15.75003pt too wide) in paragraph at lines 260--260
  []||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 |||[] 
  []
 
 
-Overfull \hbox (15.75003pt too wide) in paragraph at lines 280--280
+Overfull \hbox (15.75003pt too wide) in paragraph at lines 278--278
  []||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 |||[] 
  []
 
-[4] [5] <hist_wage.png, id=46, 2007.5pt x 1460.45625pt>
+[4] [5]
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 427.
+ [6] <hist_wage.png, id=101, 2007.5pt x 1460.45625pt>
 File: hist_wage.png Graphic file (type png)
- <use hist_wage.png>
-Package pdftex.def Info: hist_wage.png used on input line 438.
-(pdftex.def)             Requested size: 344.97696pt x 250.97073pt.
 
-[6] <edu_wage.png, id=53, 1806.75pt x 1313.90875pt>
+<use hist_wage.png>
+Package pdftex.def Info: hist_wage.png used on input line 446.
+(pdftex.def)             Requested size: 241.47162pt x 175.6706pt.
+ <edu_wage.png, id=102, 1806.75pt x 1313.90875pt>
 File: edu_wage.png Graphic file (type png)
- <use edu_wage.png>
-Package pdftex.def Info: edu_wage.png used on input line 462.
-(pdftex.def)             Requested size: 344.99533pt x 250.88828pt.
- [7 <./hist_wage.png>] <edu_wage_alpha.png, id=61, 1806.75pt x 1313.90875pt>
+
+<use edu_wage.png>
+Package pdftex.def Info: edu_wage.png used on input line 470.
+(pdftex.def)             Requested size: 241.47467pt x 175.60574pt.
+ <edu_wage_alpha.png, id=103, 1806.75pt x 1313.90875pt>
 File: edu_wage_alpha.png Graphic file (type png)
 
 <use edu_wage_alpha.png>
-Package pdftex.def Info: edu_wage_alpha.png used on input line 485.
-(pdftex.def)             Requested size: 344.99533pt x 250.88828pt.
- <wage_blk.png, id=62, 2007.5pt x 1460.45625pt>
+Package pdftex.def Info: edu_wage_alpha.png used on input line 493.
+(pdftex.def)             Requested size: 241.47467pt x 175.60574pt.
+ [7 <./hist_wage.png>] [8 <./edu_wage.png> <./edu_wage_alpha.png>] <wage_blk.pn
+g, id=119, 2007.5pt x 1460.45625pt>
 File: wage_blk.png Graphic file (type png)
+ <use wage_blk.png>
+Package pdftex.def Info: wage_blk.png used on input line 511.
+(pdftex.def)             Requested size: 241.47162pt x 175.6706pt.
 
-<use wage_blk.png>
-Package pdftex.def Info: wage_blk.png used on input line 503.
-(pdftex.def)             Requested size: 344.97696pt x 250.97073pt.
- <race_wage.png, id=63, 2007.5pt x 1460.45625pt>
+<race_wage.png, id=120, 2007.5pt x 1460.45625pt>
 File: race_wage.png Graphic file (type png)
-
-<use race_wage.png>
-Package pdftex.def Info: race_wage.png used on input line 520.
-(pdftex.def)             Requested size: 344.97696pt x 250.97073pt.
- [8 <./edu_wage.png>]
-<race_edu_wage.png, id=70, 2007.5pt x 1337.99875pt>
+ <use race_wage.png>
+Package pdftex.def Info: race_wage.png used on input line 528.
+(pdftex.def)             Requested size: 241.47162pt x 175.6706pt.
+ [9 <./wage_blk.png> <./race_wage.png>]
+<race_edu_wage.png, id=129, 2007.5pt x 1337.99875pt>
 File: race_edu_wage.png Graphic file (type png)
  <use race_edu_wage.png>
-Package pdftex.def Info: race_edu_wage.png used on input line 543.
-(pdftex.def)             Requested size: 344.97696pt x 229.92714pt.
+Package pdftex.def Info: race_edu_wage.png used on input line 551.
+(pdftex.def)             Requested size: 241.47162pt x 160.94083pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 554.
+(Font)              <10> on input line 562.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 554.
+(Font)              <7> on input line 562.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 554.
+(Font)              <5> on input line 562.
 
-Overfull \hbox (86.8419pt too wide) in paragraph at lines 556--558
+Overfull \hbox (86.8419pt too wide) in paragraph at lines 564--566
 []\T1/lmr/m/n/10 (-20) and is also up-loaded on Can-vas (https://canvas.harvard
 .edu/courses/52520/files/folder/Programming-
  []
 
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 564.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 572.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [9 <./edu_wage_alpha.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 583.
- [10 <./wage_blk.png>] [11 <./race_wage.png> <./race_edu_wage.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 583.
+) [10 <./race_edu_wage.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 597.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 597.
+ (./01_stata.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 597.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 597.
+Package rerunfilecheck Info: File `01_stata.out' has not changed.
+(rerunfilecheck)             Checksum: 49A58768AF967636E897D299CCFA683A;2051.
 
-(./01_stata.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 583.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 583.
-
-
-Package rerunfilecheck Warning: File `01_stata.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `01_stata.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  49A58768AF967636E897D299CCFA683A;2051.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 583.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 597.
  ) 
 Here is how much of TeX's memory you used:
- 12347 strings out of 492995
- 177383 string characters out of 6132704
- 278464 words of memory out of 5000000
- 15622 multiletter control sequences out of 15000+600000
- 56196 words of font info for 95 fonts, out of 8000000 for 9000
+ 12373 strings out of 492995
+ 177708 string characters out of 6132704
+ 279190 words of memory out of 5000000
+ 15641 multiletter control sequences out of 15000+600000
+ 56514 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,6n,38p,233b,565s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 32i,6n,38p,293b,567s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local
 /texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2017/
 texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2017/texmf-dist
 /fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
 1/public/lm/lmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm
 /lmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmri10.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on 01_stata.pdf (11 pages, 1591912 bytes).
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/loc
+al/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive
+/2017/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
+Output written on 01_stata.pdf (11 pages, 1616106 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
+ 190 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
  34 named destinations out of 1000 (max. 500000)
- 14372 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 14492 words of extra memory for PDF output out of 17280 (max. 10000000)
 

@@ -80,7 +80,7 @@ in a dataset to running a regression.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.90000\textwidth]{statawindow.png}
+\includegraphics[width=0.70000\textwidth]{statawindow.png}
 \caption{What's what in a Stata Window}
 \end{figure}
 
@@ -90,10 +90,9 @@ Stata takes one dataset at a time and runs manipulations on it. To clear
 the memory (i.e.~the dataset and other auxilarly objects) in Stata, the
 command is:
 
-\begin{stlog}
-. clear all
-{\smallskip}
-\end{stlog}
+\begin{verbatim}
+clear all
+\end{verbatim}
 
 For the above code and all other Stata code in this document, you can
 run it after removing the period \texttt{.} in the beginning -- which
@@ -105,10 +104,9 @@ If you know the name of the function you want to use but aren't sure how
 to use it, use the help command by typing in \texttt{help} and then the
 name of the function.
 
-\begin{stlog}
-. help ivregress
-{\smallskip}
-\end{stlog}
+\begin{verbatim}
+help ivregress
+\end{verbatim}
 
 If you do not know the exact name of the function, you can Google or
 search on Stata's help manual / search box.
@@ -422,6 +420,16 @@ Two-way tabs is referred to as a ``crosstab''
 
 \section{Visualizing Data}\label{visualizing-data}
 
+First, I strongly recommend you re-set your default color palette
+
+\begin{stlog}
+. set scheme s2mono, permanently
+({\bftt{set scheme}} preference recorded)
+{\smallskip}
+\end{stlog}
+
+which just makes for simpler and better looking plots.
+
 The \texttt{hist} command will generate a histogram.
 
 \begin{stlog}
@@ -435,8 +443,8 @@ The \texttt{hist} command will generate a histogram.
 
 \begin{figure}
 \centering
-\includegraphics[width=1.00000\textwidth]{hist_wage.png}
-\caption{}
+\includegraphics[width=0.70000\textwidth]{hist_wage.png}
+\caption{A Histogram}
 \end{figure}
 
 Note that we have two commands -- \texttt{hist} and
@@ -459,8 +467,8 @@ x-variable:
 
 \begin{figure}
 \centering
-\includegraphics[width=1.00000\textwidth]{edu_wage.png}
-\caption{}
+\includegraphics[width=0.70000\textwidth]{edu_wage.png}
+\caption{A Scatter Plot}
 \end{figure}
 
 The \texttt{graph\ export} has many options beyond the default, and they
@@ -482,8 +490,8 @@ of other points. To this we could make the points transparent.
 
 \begin{figure}
 \centering
-\includegraphics[width=1.00000\textwidth]{edu_wage_alpha.png}
-\caption{}
+\includegraphics[width=0.70000\textwidth]{edu_wage_alpha.png}
+\caption{A Scatter Plot + Transparency}
 \end{figure}
 
 What if we only wanted to plot the wage of of blacks? We want to use a
@@ -500,8 +508,8 @@ conditional \texttt{"if"} statement:
 
 \begin{figure}
 \centering
-\includegraphics[width=1.00000\textwidth]{wage_blk.png}
-\caption{}
+\includegraphics[width=0.70000\textwidth]{wage_blk.png}
+\caption{Scatter Plot + If}
 \end{figure}
 
 To compare the distribution of the same variable across groups, a
@@ -517,8 +525,8 @@ boxplot is useful
 
 \begin{figure}
 \centering
-\includegraphics[width=1.00000\textwidth]{race_wage.png}
-\caption{}
+\includegraphics[width=0.70000\textwidth]{race_wage.png}
+\caption{Boxplot}
 \end{figure}
 
 What if we wanted to plot these two last scatterplots side-by-side? We
@@ -540,8 +548,8 @@ can give each one a name and then combine them:
 
 \begin{figure}
 \centering
-\includegraphics[width=1.00000\textwidth]{race_edu_wage.png}
-\caption{}
+\includegraphics[width=0.70000\textwidth]{race_edu_wage.png}
+\caption{Scatter Plot side-by-side}
 \end{figure}
 
 \section{A Cheat-sheet for commands}\label{a-cheat-sheet-for-commands}
@@ -573,11 +581,17 @@ and is also uploaded on Canvas
   remain uncaught. Gentzkow and Shapiro have a good guide with
   battle-tested tips.
   \url{https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf}
+\item
+  Graphics should be crips and get to the point. You can change your
+  graphics palette through some of the options (look at
+  \texttt{help\ set\ scheme}) or others such as those by Daniel
+  Bischoff:
+  \url{https://www.stata.com/meeting/switzerland16/slides/bischof-switzerland16.pdf}
 \end{itemize}
 
 \section{Acknowledgements}\label{acknowledgements}
 
 For compilation, I used the \texttt{markstat} package by Germán
-Rodríguez. \url{http://data.princeton.edu/stata/markdown}
+Rodríguez. \url{http://data.princeton.edu/stata/markdown}.
 
 \end{document}

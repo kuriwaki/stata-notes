@@ -174,4 +174,21 @@ Sorted by: {res}idcode
 {com}. //_23
 . scatter weekly_wage grade if race == "black":racelbl, /// 
 >    title("Black Women") name(blk_edu_wage, replace) 
-{res}
+{res}{txt}
+{com}. scatter weekly_wage grade if race == "white":racelbl, ///
+>    title("White Women") name(wht_edu_wage, replace)
+{res}{txt}
+{com}. graph combine blk_edu_wage wht_edu_wage, ysize(2) xsize(3)
+{res}{txt}
+{com}. graph export race_edu_wage.png, width(2000) replace
+{txt}(file race_edu_wage.png written in PNG format)
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/shirokuriwaki/Dropbox/stata-notes/01_stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 3 Sep 2018, 14:44:17
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
