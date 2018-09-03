@@ -91,40 +91,43 @@
 <p>Two-way tabs is referred to as a &quot;crosstab&quot;</p>
 <p>{{16}}</p>
 <h1 id="visualizing-data">Visualizing Data</h1>
-<p>The <code>hist</code> command will generate a histogram.</p>
+<p>First, I strongly recommend you re-set your default color palette</p>
 <p>{{17}}</p>
+<p>which just makes for simpler and better looking plots.</p>
+<p>The <code>hist</code> command will generate a histogram.</p>
+<p>{{18}}</p>
 <div class="figure">
 <img src="hist_wage.png" alt="A Histogram" style="width:70.0%" />
 <p class="caption">A Histogram</p>
 </div>
 <p>Note that we have two commands -- <code>hist</code> and <code>graph export</code>. The first generates the figure within Stata; the second saves that figure as a file on your computer. Saving files will be make your workflow easier than saving files through the click-and-drag interface each time.</p>
 <p>The <code>scatter</code> command will generate a scatterplot. Two variables...two dimensions. The y-variable comes first, then the x-variable:</p>
-<p>{{18}}</p>
+<p>{{19}}</p>
 <div class="figure">
 <img src="edu_wage.png" alt="A Scatter Plot" style="width:70.0%" />
 <p class="caption">A Scatter Plot</p>
 </div>
 <p>The <code>graph export</code> has many options beyond the default, and they come after a comma <code>,</code>. Again, this is a general Stata rule -- options come after a comma. Like all commands, use the command <code>help</code> (as in <code>help graph export</code>) to see all of them.</p>
 <p>For example, we notice that the points above are overlapping and it is hard to distinguish whether a point overlap with one other point or 100s of other points. To this we could make the points transparent.</p>
-<p>{{19}}</p>
+<p>{{20}}</p>
 <div class="figure">
 <img src="edu_wage_alpha.png" alt="A Scatter Plot + Transparency" style="width:70.0%" />
 <p class="caption">A Scatter Plot + Transparency</p>
 </div>
 <p>What if we only wanted to plot the wage of of blacks? We want to use a conditional <code>&quot;if&quot;</code> statement:</p>
-<p>{{20}}</p>
+<p>{{21}}</p>
 <div class="figure">
 <img src="wage_blk.png" alt="Scatter Plot + If" style="width:70.0%" />
 <p class="caption">Scatter Plot + If</p>
 </div>
 <p>To compare the distribution of the same variable across groups, a boxplot is useful</p>
-<p>{{21}}</p>
+<p>{{22}}</p>
 <div class="figure">
 <img src="race_wage.png" alt="Boxplot" style="width:70.0%" />
 <p class="caption">Boxplot</p>
 </div>
 <p>What if we wanted to plot these two last scatterplots side-by-side? We can give each one a name and then combine them:</p>
-<p>{{22}}</p>
+<p>{{23}}</p>
 <div class="figure">
 <img src="race_edu_wage.png" alt="Scatter Plot side-by-side" style="width:70.0%" />
 <p class="caption">Scatter Plot side-by-side</p>
@@ -136,8 +139,9 @@
 <ul>
 <li>Writing loops, writing functions, and generating macros are some techniques that will greatly simplify -- or will be required -- for any work beyond the tabular data provided. We will introduce these concepts as necessary, but the tutorial here is a good overview: <a href="http://data.princeton.edu/stata/programming.html" class="uri">http://data.princeton.edu/stata/programming.html</a></li>
 <li>As you deal with multifaceted projects, how you organize your code and files will become increasingly important. Better workflow not only allows you to work faster, but reduces the number of errors that remain uncaught. Gentzkow and Shapiro have a good guide with battle-tested tips. <a href="https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf" class="uri">https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf</a></li>
+<li>Graphics should be crips and get to the point. You can change your graphics palette through some of the options (look at <code>help set scheme</code>) or others such as those by Daniel Bischoff: <a href="https://www.stata.com/meeting/switzerland16/slides/bischof-switzerland16.pdf" class="uri">https://www.stata.com/meeting/switzerland16/slides/bischof-switzerland16.pdf</a></li>
 </ul>
 <h1 id="acknowledgements">Acknowledgements</h1>
-<p>For compilation, I used the <code>markstat</code> package by Germán Rodríguez. <a href="http://data.princeton.edu/stata/markdown" class="uri">http://data.princeton.edu/stata/markdown</a></p>
+<p>For compilation, I used the <code>markstat</code> package by Germán Rodríguez. <a href="http://data.princeton.edu/stata/markdown" class="uri">http://data.princeton.edu/stata/markdown</a>.</p>
 </body>
 </html>

@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/shirokuriwaki/Dropbox/stata-notes/01_stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 3 Sep 2018, 14:30:55
+ {txt}opened on:  {res} 3 Sep 2018, 14:43:48
 {txt}
 {com}. //_1
 . use sample_data.dta
@@ -24,8 +24,8 @@
 
 {txt}Contains data from {res}/Applications/Stata/ado/base/n/nlsw88.dta
 {txt}  obs:{res}         2,246                          NLSW, 1988 extract
-{txt} vars:{res}            18                          3 Sep 2018 14:16
-{txt} size:{res}        69,626                          (_dta has notes)
+{txt} vars:{res}            17                          1 May 2016 22:52
+{txt} size:{res}        60,642                          (_dta has notes)
 {txt}{hline}
               storage   display    value
 variable name   type    format     label      variable label
@@ -47,7 +47,6 @@ variable name   type    format     label      variable label
 {p 0 48}{bind:hours          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}usual hours worked{p_end}
 {p 0 48}{bind:ttl_exp        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}total work experience{p_end}
 {p 0 48}{bind:tenure         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}job tenure (years){p_end}
-{p 0 48}{bind:weekly_wage    }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}weekly wage (estimate){p_end}
 {txt}{hline}
 Sorted by: {res}idcode
 {txt}
@@ -89,13 +88,90 @@ Sorted by: {res}idcode
 
 {com}. //_9
 . gen weekly_wage = wage * hours
-{err}variable {bf}weekly_wage{sf} already defined
-{txt}{search r(110), local:r(110);}
+{txt}(4 missing values generated)
 
-end of do-file
+{com}. //_10
+. label variable weekly_wage "weekly wage (estimate)"
+{txt}
+{com}. //_11
+. gen foo = (age)^2
+{txt}
+{com}. replace foo = 0
+{txt}(2,246 real changes made)
 
-{com}. 
-. 
-{txt}end of do-file
+{com}. //_12
+. drop foo
+{txt}
+{com}. //_13
+. count
+  {res}2,246
+{txt}
+{com}. //_14
+. count if south == 1
+  {res}942
+{txt}
+{com}. //_15
+. tabulate c_city
 
-{com}. 
+   {txt}lives in {c |}
+    central {c |}
+       city {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      1,591       70.84       70.84
+{txt}          1 {c |}{res}        655       29.16      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,246      100.00
+{txt}
+{com}. //_16
+. tabulate c_city union
+
+  {txt}lives in {c |}
+   central {c |}     union worker
+      city {c |}  nonunion      union {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+         0 {c |}{res}     1,034        288 {txt}{c |}{res}     1,322 
+{txt}         1 {c |}{res}       383        173 {txt}{c |}{res}       556 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res}     1,417        461 {txt}{c |}{res}     1,878 
+
+{txt}
+{com}. //_17
+. set scheme s2mono, permanently
+{txt}({cmd:set scheme} preference recorded)
+
+{com}. //_18
+. hist wage
+{txt}(bin={res}33{txt}, start={res}1.0049518{txt}, width={res}1.2042921{txt})
+{res}{txt}
+{com}. graph export hist_wage.png, width(2000) replace
+{txt}(file hist_wage.png written in PNG format)
+
+{com}. //_19
+. scatter weekly_wage grade
+{res}{txt}
+{com}. graph export edu_wage.png, width(1800) replace
+{txt}(file edu_wage.png written in PNG format)
+
+{com}. //_20
+. scatter weekly_wage grade, mcolor(%30)
+{res}{txt}
+{com}. graph export edu_wage_alpha.png, width(1800) replace
+{txt}(file edu_wage_alpha.png written in PNG format)
+
+{com}. //_21
+. hist wage if race == "black":racelbl
+{txt}(bin={res}24{txt}, start={res}1.1513683{txt}, width={res}1.6498009{txt})
+{res}{txt}
+{com}. graph export wage_blk.png, width(2000) replace
+{txt}(file wage_blk.png written in PNG format)
+
+{com}. //_22
+. graph box wage, over(race)
+{res}{txt}
+{com}. graph export race_wage.png, width(2000) replace
+{txt}(file race_wage.png written in PNG format)
+
+{com}. //_23
+. scatter weekly_wage grade if race == "black":racelbl, /// 
+>    title("Black Women") name(blk_edu_wage, replace) 
+{res}

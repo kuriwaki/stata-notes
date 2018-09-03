@@ -16,9 +16,6 @@ Stata takes one dataset at a time and runs manipulations on it. To clear the mem
 clear all
 ```
 
-```{s, echo = FALSE}
-clear all 
-```
 
 For the above code and all other Stata code in this document, you can run it after removing the period `.` in the beginning -- which indicates a command that was already entered.
 

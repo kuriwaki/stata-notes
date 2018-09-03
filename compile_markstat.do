@@ -1,6 +1,7 @@
 
-cd "~/Dropbox/API-201Z/2018 Sections/2018-09-06"
+cd "~/Dropbox/stata-notes"
 
 markstat using 01_stata.stmd, strict
+clear all
 markstat using 01_stata.stmd, pdf strict
 

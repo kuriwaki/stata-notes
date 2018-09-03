@@ -114,10 +114,10 @@ Contains data from /Applications/Stata/ado/base/n/nlsw88.dta
   obs:         2,246                          NLSW, 1988 extract
  vars:            17                          1 May 2016 22:52
  size:        60,642                          (_dta has notes)
-────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────
 idcode          int     %8.0g                 NLS id
 age             byte    %8.0g                 age in current year
 race            byte    %8.0g      racelbl    race
@@ -135,7 +135,7 @@ wage            float   %9.0g                 hourly wage
 hours           byte    %8.0g                 usual hours worked
 ttl_exp         float   %9.0g                 total work experience
 tenure          float   %9.0g                 job tenure (years)
-────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────
 Sorted by: idcode
 </pre>
 <h1 id="summary-statistics">Summary Statistics</h1>
@@ -222,39 +222,14 @@ Sorted by: idcode
      Total │     1,417        461 │     1,878 
 </pre>
 <h1 id="visualizing-data">Visualizing Data</h1>
+<p>First, I strongly recommend you re-set your default color palette</p>
+<pre class='stata'>. set scheme s2mono, permanently
+(set scheme preference recorded)
+</pre>
+<p>which just makes for simpler and better looking plots.</p>
 <p>The <code>hist</code> command will generate a histogram.</p>
 <pre class='stata'>. hist wage
 (bin=33, start=1.0049518, width=1.2042921)
-(note:  alignstroke foreground not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke tick not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke grid not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke major_grid not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke minortick not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke axisline not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke background not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke plotregion not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1mark not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1 not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1bar not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke dotmark not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
-(note:  alignstroke histogram not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
 
 . graph export hist_wage.png, width(2000) replace
 (file hist_wage.png written in PNG format)
@@ -266,8 +241,6 @@ Sorted by: idcode
 <p>Note that we have two commands -- <code>hist</code> and <code>graph export</code>. The first generates the figure within Stata; the second saves that figure as a file on your computer. Saving files will be make your workflow easier than saving files through the click-and-drag interface each time.</p>
 <p>The <code>scatter</code> command will generate a scatterplot. Two variables...two dimensions. The y-variable comes first, then the x-variable:</p>
 <pre class='stata'>. scatter weekly_wage grade
-(note:  alignstroke p1other not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
 
 . graph export edu_wage.png, width(1800) replace
 (file edu_wage.png written in PNG format)
@@ -300,22 +273,6 @@ Sorted by: idcode
 </div>
 <p>To compare the distribution of the same variable across groups, a boxplot is useful</p>
 <pre class='stata'>. graph box wage, over(race)
-(note:  alignstroke dot not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke dot_area not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke refline not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke refmarker not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
-(note:  alignstroke ci not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1boxmark not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1box not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
 
 . graph export race_wage.png, width(2000) replace
 (file race_wage.png written in PNG format)
@@ -332,58 +289,6 @@ Sorted by: idcode
 >    title("White Women") name(wht_edu_wage, replace)
 
 . graph combine blk_edu_wage wht_edu_wage, ysize(2) xsize(3)
-(note:  clockdir by_legend_position not found in scheme, default attributes
-        used)
-(note:  clockdir by_legend_position not found in scheme, default attributes
-        used)
-(note:  alignstroke foreground not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke background not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke plotregion not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1mark not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1 not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1other not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke dotmark not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
-(note:  alignstroke tick not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke major_grid not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke minortick not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke axisline not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke foreground not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke background not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke plotregion not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1mark not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1 not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke p1other not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke dotmark not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
-(note:  anglestyle symbol not found in scheme, default attributes used)
-(note:  alignstroke tick not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke major_grid not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke minortick not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
-(note:  alignstroke axisline not found in scheme, default attributes used)
-(note:  alignstroke not found in scheme, default attributes used)
 
 . graph export race_edu_wage.png, width(2000) replace
 (file race_edu_wage.png written in PNG format)
@@ -399,8 +304,9 @@ Sorted by: idcode
 <ul>
 <li>Writing loops, writing functions, and generating macros are some techniques that will greatly simplify -- or will be required -- for any work beyond the tabular data provided. We will introduce these concepts as necessary, but the tutorial here is a good overview: <a href="http://data.princeton.edu/stata/programming.html" class="uri">http://data.princeton.edu/stata/programming.html</a></li>
 <li>As you deal with multifaceted projects, how you organize your code and files will become increasingly important. Better workflow not only allows you to work faster, but reduces the number of errors that remain uncaught. Gentzkow and Shapiro have a good guide with battle-tested tips. <a href="https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf" class="uri">https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf</a></li>
+<li>Graphics should be crips and get to the point. You can change your graphics palette through some of the options (look at <code>help set scheme</code>) or others such as those by Daniel Bischoff: <a href="https://www.stata.com/meeting/switzerland16/slides/bischof-switzerland16.pdf" class="uri">https://www.stata.com/meeting/switzerland16/slides/bischof-switzerland16.pdf</a></li>
 </ul>
 <h1 id="acknowledgements">Acknowledgements</h1>
-<p>For compilation, I used the <code>markstat</code> package by Germán Rodríguez. <a href="http://data.princeton.edu/stata/markdown" class="uri">http://data.princeton.edu/stata/markdown</a></p>
+<p>For compilation, I used the <code>markstat</code> package by Germán Rodríguez. <a href="http://data.princeton.edu/stata/markdown" class="uri">http://data.princeton.edu/stata/markdown</a>.</p>
 </body>
 </html>
