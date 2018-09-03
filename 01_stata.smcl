@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/shirokuriwaki/Dropbox/stata-notes/01_stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 3 Sep 2018, 14:43:48
+ {txt}opened on:  {res} 3 Sep 2018, 14:46:59
 {txt}
 {com}. //_1
 . use sample_data.dta
@@ -188,7 +188,7 @@ Sorted by: {res}idcode
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/shirokuriwaki/Dropbox/stata-notes/01_stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 3 Sep 2018, 14:44:17
+ {txt}closed on:  {res} 3 Sep 2018, 14:47:16
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

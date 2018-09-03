@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  3 SEP 2018 14:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  3 SEP 2018 14:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1079,25 +1079,31 @@ LaTeX Font Info:    Try loading font information for TS1+lmr on input line 572.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [10 <./race_edu_wage.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 597.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 599.
  [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 597.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 599.
  (./01_stata.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 597.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 597.
-Package rerunfilecheck Info: File `01_stata.out' has not changed.
-(rerunfilecheck)             Checksum: 49A58768AF967636E897D299CCFA683A;2051.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 599.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 599.
 
+
+Package rerunfilecheck Warning: File `01_stata.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `01_stata.out':
+(rerunfilecheck)             Before: 49A58768AF967636E897D299CCFA683A;2051
+(rerunfilecheck)             After:  72BD92F7E9C24B42454DA305746A6C3F;1996.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 597.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 599.
  ) 
 Here is how much of TeX's memory you used:
- 12373 strings out of 492995
- 177708 string characters out of 6132704
- 279190 words of memory out of 5000000
- 15641 multiletter control sequences out of 15000+600000
+ 12374 strings out of 492995
+ 177715 string characters out of 6132704
+ 279192 words of memory out of 5000000
+ 15642 multiletter control sequences out of 15000+600000
  56514 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  32i,6n,38p,293b,567s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1110,10 +1116,10 @@ texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2017/texmf-dist
 ></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/loc
 al/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive
 /2017/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on 01_stata.pdf (11 pages, 1616106 bytes).
+Output written on 01_stata.pdf (11 pages, 1616659 bytes).
 PDF statistics:
- 190 PDF objects out of 1000 (max. 8388607)
- 153 compressed objects within 2 object streams
+ 193 PDF objects out of 1000 (max. 8388607)
+ 156 compressed objects within 2 object streams
  34 named destinations out of 1000 (max. 500000)
  14492 words of extra memory for PDF output out of 17280 (max. 10000000)
 

@@ -277,5 +277,5 @@ and is also uploaded on Canvas (https://canvas.harvard.edu/courses/52520/files/f
 * Graphics should be crips and get to the point. You can change your graphics palette through some of the options (look at `help set scheme`) or others such as those by Daniel Bischoff: <https://www.stata.com/meeting/switzerland16/slides/bischof-switzerland16.pdf>
 
 
-# Acknowledgements
-For compilation, I used the `markstat` package by Germán Rodríguez. <http://data.princeton.edu/stata/markdown>. 
+# About
+For compilation, I used the `markstat` package by Germán Rodríguez. <http://data.princeton.edu/stata/markdown>.  Source Code: <https://github.com/kuriwaki/stata-notes>. Contact: Shiro Kuriwaki, <kuriwaki@g.harvard.edu>
