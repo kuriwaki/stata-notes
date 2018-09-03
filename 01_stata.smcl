@@ -1,0 +1,101 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/shirokuriwaki/Dropbox/stata-notes/01_stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 3 Sep 2018, 14:30:55
+{txt}
+{com}. //_1
+. use sample_data.dta
+{txt}
+{com}. //_2
+. import delimited using sample_data.csv, clear
+{res}{text}(7 vars, 435 obs)
+
+{com}. //_3
+. clear all
+{res}{txt}
+{com}. //_4
+. sysuse nlsw88
+{txt}(NLSW, 1988 extract)
+
+{com}. //_5
+. describe
+
+{txt}Contains data from {res}/Applications/Stata/ado/base/n/nlsw88.dta
+{txt}  obs:{res}         2,246                          NLSW, 1988 extract
+{txt} vars:{res}            18                          3 Sep 2018 14:16
+{txt} size:{res}        69,626                          (_dta has notes)
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:idcode         }{txt}{bind: int     }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}NLS id{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}age in current year{p_end}
+{p 0 48}{bind:race           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:racelbl  }{bind:  }{res}{res}race{p_end}
+{p 0 48}{bind:married        }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:marlbl   }{bind:  }{res}{res}married{p_end}
+{p 0 48}{bind:never_married  }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}never married{p_end}
+{p 0 48}{bind:grade          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}current grade completed{p_end}
+{p 0 48}{bind:collgrad       }{txt}{bind: byte    }{bind:{txt}%16.0g    }{space 1}{bind:gradlbl  }{bind:  }{res}{res}college graduate{p_end}
+{p 0 48}{bind:south          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}lives in south{p_end}
+{p 0 48}{bind:smsa           }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:smsalbl  }{bind:  }{res}{res}lives in SMSA{p_end}
+{p 0 48}{bind:c_city         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}lives in central city{p_end}
+{p 0 48}{bind:industry       }{txt}{bind: byte    }{bind:{txt}%23.0g    }{space 1}{bind:indlbl   }{bind:  }{res}{res}industry{p_end}
+{p 0 48}{bind:occupation     }{txt}{bind: byte    }{bind:{txt}%22.0g    }{space 1}{bind:occlbl   }{bind:  }{res}{res}occupation{p_end}
+{p 0 48}{bind:union          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:unionlbl }{bind:  }{res}{res}union worker{p_end}
+{p 0 48}{bind:wage           }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}hourly wage{p_end}
+{p 0 48}{bind:hours          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}usual hours worked{p_end}
+{p 0 48}{bind:ttl_exp        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}total work experience{p_end}
+{p 0 48}{bind:tenure         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}job tenure (years){p_end}
+{p 0 48}{bind:weekly_wage    }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}weekly wage (estimate){p_end}
+{txt}{hline}
+Sorted by: {res}idcode
+{txt}
+{com}. //_6
+. sum age
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}      2,246    39.15316    3.060002         34         46
+{txt}
+{com}. //_7
+. sum age, detail
+
+                     {txt}age in current year
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}       34             34
+{txt} 5%    {res}       35             34
+{txt}10%    {res}       35             34       {txt}Obs         {res}      2,246
+{txt}25%    {res}       36             34       {txt}Sum of Wgt. {res}      2,246
+
+{txt}50%    {res}       39                      {txt}Mean          {res} 39.15316
+                        {txt}Largest       Std. Dev.     {res} 3.060002
+{txt}75%    {res}       42             45
+{txt}90%    {res}       44             45       {txt}Variance      {res} 9.363614
+{txt}95%    {res}       44             46       {txt}Skewness      {res} .2003234
+{txt}99%    {res}       45             46       {txt}Kurtosis      {res} 1.932389
+{txt}
+{com}. //_8
+. tabstat age, stat(mean sd median iqr)
+
+{txt}{ralign 12:variable} {...}
+{c |}      mean        sd       p50       iqr
+{hline 13}{c +}{hline 40}
+{ralign 12:age} {...}
+{c |}{...}
+ {res} 39.15316  3.060002        39         6
+{txt}{hline 13}{c BT}{hline 40}
+
+{com}. //_9
+. gen weekly_wage = wage * hours
+{err}variable {bf}weekly_wage{sf} already defined
+{txt}{search r(110), local:r(110);}
+
+end of do-file
+
+{com}. 
+. 
+{txt}end of do-file
+
+{com}. 

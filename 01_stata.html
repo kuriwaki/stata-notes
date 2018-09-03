@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+/* CSS for Stata Markdown */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+div.figure > img {display:block; margin:auto}
+p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; 
+ border-top:1px solid black; border-bottom:1px solid black;}
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black;padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+</style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Shiro Kuriwaki" />
+  <title>API 201Z Stata Demonstration</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">API 201Z Stata Demonstration</h1>
+<h2 class="author">Shiro Kuriwaki</h2>
+<h3 class="date">September 6th, 2018</h3>
+</div>
+<h1 id="scripts-and-console">Scripts and Console</h1>
+<p>How does one &quot;do Stata&quot;? We interact with Stata by sending the statistical program &quot;commands&quot;. Commands can be anything from reading in a dataset to running a regression.</p>
+<div class="figure">
+<img src="statawindow.png" alt="What&#39;s what in a Stata Window" style="width:70.0%" />
+<p class="caption">What's what in a Stata Window</p>
+</div>
+<h1 id="starting-fresh">Starting Fresh</h1>
+<p>Stata takes one dataset at a time and runs manipulations on it. To clear the memory (i.e. the dataset and other auxilarly objects) in Stata, the command is:</p>
+<pre><code>clear all</code></pre>
+<p>For the above code and all other Stata code in this document, you can run it after removing the period <code>.</code> in the beginning -- which indicates a command that was already entered.</p>
+<h1 id="getting-help">Getting Help</h1>
+<p>If you know the name of the function you want to use but aren't sure how to use it, use the help command by typing in <code>help</code> and then the name of the function.</p>
+<pre><code>help ivregress</code></pre>
+<p>If you do not know the exact name of the function, you can Google or search on Stata's help manual / search box.</p>
+<h1 id="logging-your-activity">Logging your Activity</h1>
+<p>Stata commands are stored in a script. You <em>can</em> write commands directly into the command window to get similar results. However, it is often a bad idea to do your analysis through the command window because it is easy to forget the exact steps. Instead, you should save your commands in a script -- a <code>.do</code> file. When we ask for scripts on problem sets, we are looking for a script.</p>
+<p>The <code>.do</code> file lacks a way to store the output of your commands. To store output you can generate a separate log file along with your <code>.do</code> scripts. To do so,</p>
+<p>start your <code>.do</code> file with</p>
+<pre><code>log using kuriwaki_log.txt, text replace</code></pre>
+<p>where the filename <code>kuriwaki_log.txt</code> can be replaced by any name of your choice.</p>
+<p>Then at the end of your <code>.do</code> file, enter</p>
+<pre><code>log close</code></pre>
+<p>to close the log.</p>
+<p>Finally, you also might want to enter at the very first line, before <code>log using...</code>, the following</p>
+<pre><code>capture log close</code></pre>
+<p>to close any already opened logs (if they exist).</p>
+<h1 id="reading-in-data">Reading in Data</h1>
+<p>When working in Stata, it's always an important first step to make sure you're in the right working directory (where you tell Stata what folder you want to work in).</p>
+<p><code>pwd</code> stands for &quot;present working directory&quot;. <code>cd</code> stands for &quot;change directory&quot;. <code>ls</code> stands for &quot;list (the files in current directory)&quot;. <code>.</code> is shorthand for the current directory, <code>..</code> for the parent directory, and <code>~/</code> for your home directory.</p>
+<p>For example,</p>
+<pre><code>cd &quot;~/Dropbox/temp&quot;</code></pre>
+<p>You will want to modify the path above to your own.</p>
+<p>Now, load the <code>.dta</code> file provided into Stata:</p>
+<pre class='stata'>. use sample_data.dta
+</pre>
+<p>Note that <code>use</code> is limited to <code>.dta</code> files; Stata's designated way of storing datasets. The most useful feature of a <code>.dta</code> format is that the data values comes with <code>labels</code>. For example, a <code>.dta</code> will be able to store the fact that the labels <code>female</code> and <code>male</code> correspond to values 1 and 2, respectively.</p>
+<p>Sometimes, your data will not come in a <code>.dta</code> format. A basic format is <code>.csv</code> -- standing for comma-separated-values. These files is like an Excel spreadsheet, but without any of the formatting (color, functions, comments). The csv is a common and desirable form in programming, as it can be read by any statistical program.</p>
+<p>What if we needed to load a csv file?</p>
+<pre class='stata'>. import delimited using sample_data.csv, clear
+(7 vars, 435 obs)
+</pre>
+<p>We see that compared to the one-word <code>use</code>, the Stata syntax is a bit more lengthy to read in a spreadsheet. Again, enter <code>help import</code> or <code>help import delimited</code> to understand thi son your own. The help page tells us that we use <code>import delimited</code> and then the file name followed by the <code>using</code> word.</p>
+<h1 id="a-comma-separates-commands-and-options">A comma separates commands and options</h1>
+<p>You will see the comma used many times in Stata code. On the left-side of the comma, you put the main command. On the right-side, you put secondary options. The comma often confuses first-time users.</p>
+<pre class='stata'>. clear all
+</pre>
+<h1 id="built-in-data">Built-in Data</h1>
+<p>To go through how to analyze and review data, let's work with a dataset that is pre-loaded into the Stata app.</p>
+<p>The command <code>sysuse</code> is a command to use a data already baked into the system. Then <code>nlsw88</code> is one of the several datasets that are available.</p>
+<p>This is an extract from the 1988 National Longitudinal Survey of Women, which is a survey conducted by the Department of Labor. This extract contains about 2000 women in their 30s and 40s.</p>
+<pre class='stata'>. sysuse nlsw88
+(NLSW, 1988 extract)
+</pre>
+<h1 id="browsing-data">Browsing Data</h1>
+<p>To look at the data we've just loaded in, use the command <code>browse</code> (or <code>br</code> for short):</p>
+<pre><code>browse</code></pre>
+<p>To get a list of the variables and the variable types:</p>
+<pre class='stata'>. describe
+
+Contains data from /Applications/Stata/ado/base/n/nlsw88.dta
+  obs:         2,246                          NLSW, 1988 extract
+ vars:            17                          1 May 2016 22:52
+ size:        60,642                          (_dta has notes)
+────────────────────────────────────────────────────────────────────────────────
+              storage   display    value
+variable name   type    format     label      variable label
+────────────────────────────────────────────────────────────────────────────────
+idcode          int     %8.0g                 NLS id
+age             byte    %8.0g                 age in current year
+race            byte    %8.0g      racelbl    race
+married         byte    %8.0g      marlbl     married
+never_married   byte    %8.0g                 never married
+grade           byte    %8.0g                 current grade completed
+collgrad        byte    %16.0g     gradlbl    college graduate
+south           byte    %8.0g                 lives in south
+smsa            byte    %9.0g      smsalbl    lives in SMSA
+c_city          byte    %8.0g                 lives in central city
+industry        byte    %23.0g     indlbl     industry
+occupation      byte    %22.0g     occlbl     occupation
+union           byte    %8.0g      unionlbl   union worker
+wage            float   %9.0g                 hourly wage
+hours           byte    %8.0g                 usual hours worked
+ttl_exp         float   %9.0g                 total work experience
+tenure          float   %9.0g                 job tenure (years)
+────────────────────────────────────────────────────────────────────────────────
+Sorted by: idcode
+</pre>
+<h1 id="summary-statistics">Summary Statistics</h1>
+<p>We can see that there are seventeen variables in this dataset.</p>
+<pre class='stata'>. sum age
+
+    Variable │        Obs        Mean    Std. Dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+         age │      2,246    39.15316    3.060002         34         46
+</pre>
+<pre class='stata'>. sum age, detail
+
+                     age in current year
+─────────────────────────────────────────────────────────────
+      Percentiles      Smallest
+ 1%           34             34
+ 5%           35             34
+10%           35             34       Obs               2,246
+25%           36             34       Sum of Wgt.       2,246
+
+50%           39                      Mean           39.15316
+                        Largest       Std. Dev.      3.060002
+75%           42             45
+90%           44             45       Variance       9.363614
+95%           44             46       Skewness       .2003234
+99%           45             46       Kurtosis       1.932389
+</pre>
+<pre class='stata'>. tabstat age, stat(mean sd median iqr)
+
+    variable │      mean        sd       p50       iqr
+─────────────┼────────────────────────────────────────
+         age │  39.15316  3.060002        39         6
+─────────────┴────────────────────────────────────────
+</pre>
+<h1 id="new-variables">New Variables</h1>
+<p>To create a new variable, use the <code>generate</code> (<code>gen</code> for short) command:</p>
+<pre class='stata'>. gen weekly_wage = wage * hours
+(4 missing values generated)
+</pre>
+<p>Stata, along with SPSS, adds &quot;labels&quot; to variables. You might think of the labels as &quot;pretty names&quot; that are more legible than &quot;weekly_wage&quot;. labels show up in the Stata variable window and are also get used in graphs. It is often worth the extra effort to label your own variables.</p>
+<pre class='stata'>. label variable weekly_wage "weekly wage (estimate)"
+</pre>
+<p>If you want to redefine a variable, use the <code>replace</code> command:</p>
+<pre class='stata'>. gen foo = (age)^2
+
+. replace foo = 0
+(2,246 real changes made)
+</pre>
+<p>To &quot;drop&quot; (delete) a variable:</p>
+<pre class='stata'>. drop foo
+</pre>
+<h1 id="counting">Counting</h1>
+<p>To count the rows in your dataset,</p>
+<pre class='stata'>. count
+  2,246
+</pre>
+<p>What about counting only observations that match a certain condition? Use <code>if</code> at the end and the boolean conditions <code>==</code>, <code>!=</code>, <code>|</code>, and <code>&amp;</code>.</p>
+<pre class='stata'>. count if south == 1
+  942
+</pre>
+<p><code>tabulate</code> is an oft-used function for counting. We can either do a one-way or two-way tabulation.</p>
+<p>One-way tabs is a tabulation of counts</p>
+<pre class='stata'>. tabulate c_city
+
+   lives in │
+    central │
+       city │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+          0 │      1,591       70.84       70.84
+          1 │        655       29.16      100.00
+────────────┼───────────────────────────────────
+      Total │      2,246      100.00
+</pre>
+<p>Two-way tabs is referred to as a &quot;crosstab&quot;</p>
+<pre class='stata'>. tabulate c_city union
+
+  lives in │
+   central │     union worker
+      city │  nonunion      union │     Total
+───────────┼──────────────────────┼──────────
+         0 │     1,034        288 │     1,322 
+         1 │       383        173 │       556 
+───────────┼──────────────────────┼──────────
+     Total │     1,417        461 │     1,878 
+</pre>
+<h1 id="visualizing-data">Visualizing Data</h1>
+<p>The <code>hist</code> command will generate a histogram.</p>
+<pre class='stata'>. hist wage
+(bin=33, start=1.0049518, width=1.2042921)
+(note:  alignstroke foreground not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke tick not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke grid not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke major_grid not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke minortick not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke axisline not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke background not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke plotregion not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1mark not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1 not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1bar not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke dotmark not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+(note:  alignstroke histogram not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+
+. graph export hist_wage.png, width(2000) replace
+(file hist_wage.png written in PNG format)
+</pre>
+<div class="figure">
+<img src="hist_wage.png" alt="A Histogram" style="width:70.0%" />
+<p class="caption">A Histogram</p>
+</div>
+<p>Note that we have two commands -- <code>hist</code> and <code>graph export</code>. The first generates the figure within Stata; the second saves that figure as a file on your computer. Saving files will be make your workflow easier than saving files through the click-and-drag interface each time.</p>
+<p>The <code>scatter</code> command will generate a scatterplot. Two variables...two dimensions. The y-variable comes first, then the x-variable:</p>
+<pre class='stata'>. scatter weekly_wage grade
+(note:  alignstroke p1other not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+
+. graph export edu_wage.png, width(1800) replace
+(file edu_wage.png written in PNG format)
+</pre>
+<div class="figure">
+<img src="edu_wage.png" alt="A Scatter Plot" style="width:70.0%" />
+<p class="caption">A Scatter Plot</p>
+</div>
+<p>The <code>graph export</code> has many options beyond the default, and they come after a comma <code>,</code>. Again, this is a general Stata rule -- options come after a comma. Like all commands, use the command <code>help</code> (as in <code>help graph export</code>) to see all of them.</p>
+<p>For example, we notice that the points above are overlapping and it is hard to distinguish whether a point overlap with one other point or 100s of other points. To this we could make the points transparent.</p>
+<pre class='stata'>. scatter weekly_wage grade, mcolor(%30)
+
+. graph export edu_wage_alpha.png, width(1800) replace
+(file edu_wage_alpha.png written in PNG format)
+</pre>
+<div class="figure">
+<img src="edu_wage_alpha.png" alt="A Scatter Plot + Transparency" style="width:70.0%" />
+<p class="caption">A Scatter Plot + Transparency</p>
+</div>
+<p>What if we only wanted to plot the wage of of blacks? We want to use a conditional <code>&quot;if&quot;</code> statement:</p>
+<pre class='stata'>. hist wage if race == "black":racelbl
+(bin=24, start=1.1513683, width=1.6498009)
+
+. graph export wage_blk.png, width(2000) replace
+(file wage_blk.png written in PNG format)
+</pre>
+<div class="figure">
+<img src="wage_blk.png" alt="Scatter Plot + If" style="width:70.0%" />
+<p class="caption">Scatter Plot + If</p>
+</div>
+<p>To compare the distribution of the same variable across groups, a boxplot is useful</p>
+<pre class='stata'>. graph box wage, over(race)
+(note:  alignstroke dot not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke dot_area not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke refline not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke refmarker not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+(note:  alignstroke ci not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1boxmark not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1box not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+
+. graph export race_wage.png, width(2000) replace
+(file race_wage.png written in PNG format)
+</pre>
+<div class="figure">
+<img src="race_wage.png" alt="Boxplot" style="width:70.0%" />
+<p class="caption">Boxplot</p>
+</div>
+<p>What if we wanted to plot these two last scatterplots side-by-side? We can give each one a name and then combine them:</p>
+<pre class='stata'>. scatter weekly_wage grade if race == "black":racelbl, /// 
+>    title("Black Women") name(blk_edu_wage, replace) 
+
+. scatter weekly_wage grade if race == "white":racelbl, ///
+>    title("White Women") name(wht_edu_wage, replace)
+
+. graph combine blk_edu_wage wht_edu_wage, ysize(2) xsize(3)
+(note:  clockdir by_legend_position not found in scheme, default attributes
+        used)
+(note:  clockdir by_legend_position not found in scheme, default attributes
+        used)
+(note:  alignstroke foreground not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke background not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke plotregion not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1mark not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1 not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1other not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke dotmark not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+(note:  alignstroke tick not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke major_grid not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke minortick not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke axisline not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke foreground not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke background not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke plotregion not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1mark not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1 not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke p1other not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke dotmark not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+(note:  anglestyle symbol not found in scheme, default attributes used)
+(note:  alignstroke tick not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke major_grid not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke minortick not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+(note:  alignstroke axisline not found in scheme, default attributes used)
+(note:  alignstroke not found in scheme, default attributes used)
+
+. graph export race_edu_wage.png, width(2000) replace
+(file race_edu_wage.png written in PNG format)
+</pre>
+<div class="figure">
+<img src="race_edu_wage.png" alt="Scatter Plot side-by-side" style="width:70.0%" />
+<p class="caption">Scatter Plot side-by-side</p>
+</div>
+<h1 id="a-cheat-sheet-for-commands">A Cheat-sheet for commands</h1>
+<p>Unless you are already a Stata flow you will probably need to constantly refer to online and Stata-based resources on the command names and syntax of the commands you'd want to run. The Stata manual enclosed in the Stata Application and online message boards are helpful. A nice cheat-sheet of commands is here <a href="https://geocenter.github.io/StataTraining/pdf/AllCheatSheets.pdf" class="uri">https://geocenter.github.io/StataTraining/pdf/AllCheatSheets.pdf</a></p>
+<p>and is also uploaded on Canvas (https://canvas.harvard.edu/courses/52520/files/folder/Programming-Resources)</p>
+<h1 id="more-advanced-topics">More Advanced Topics</h1>
+<ul>
+<li>Writing loops, writing functions, and generating macros are some techniques that will greatly simplify -- or will be required -- for any work beyond the tabular data provided. We will introduce these concepts as necessary, but the tutorial here is a good overview: <a href="http://data.princeton.edu/stata/programming.html" class="uri">http://data.princeton.edu/stata/programming.html</a></li>
+<li>As you deal with multifaceted projects, how you organize your code and files will become increasingly important. Better workflow not only allows you to work faster, but reduces the number of errors that remain uncaught. Gentzkow and Shapiro have a good guide with battle-tested tips. <a href="https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf" class="uri">https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf</a></li>
+</ul>
+<h1 id="acknowledgements">Acknowledgements</h1>
+<p>For compilation, I used the <code>markstat</code> package by Germán Rodríguez. <a href="http://data.princeton.edu/stata/markdown" class="uri">http://data.princeton.edu/stata/markdown</a></p>
+</body>
+</html>
