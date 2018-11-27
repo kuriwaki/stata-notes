@@ -1,0 +1,123 @@
+% API-201Z Regressions in Stata
+% Shiro Kuriwaki
+% November 27, 2018
+
+
+
+# Loading Data
+
+
+Start fresh ...
+
+```
+clear all
+```
+
+[Reversal of Fortune: Geography and Institutions in the Making of the Modern World Income Distribution.](https://economics.mit.edu/files/4962). Daron Acemoglu, Simon Johnson, and James A. Robinson. _Quarterly Journal of Economics_, 117, November 2002: pp. 1231-1294., 
+
+In this 2002 article,  Acemoglu, Johnson, and Robinson argue that countries that were more wealthy and urbanized in the 1500s saw their fortunes reverse in the subsequent centuries. Countries such as Rwanda and Tanzania were high-density areas in the 1500s but in the 20th century had low GDP per capita. The authors argue that this is because European colonialism settled more in areas that were less developed in the 1500s, but then went on to become strong economies. A simple bivariate relationship motivates their argument.
+
+
+```{s}
+use reversal.dta, clear
+describe
+```
+
+
+
+# Simple Regression
+
+Use the `regress` or `reg` command to run a regression. 
+
+```{s}
+regress logpgp95 lpd1500s 
+```
+
+
+In a simple regression, a scatter plot can show the data cleanly
+
+```{s}
+twoway scatter logpgp95 lpd1500s ||  lfit logpgp95 lpd1500s, ///
+   ytitle(1950 GDP per Capita) ///
+   xtitle(1500s Population Density) ///
+   legend(off)
+graph export reversal_fit.png, width(2000) replace
+```
+
+ 
+![The Best Fit Regression Line](reversal_fit.png){width=70%}
+
+
+Different options:
+
+```{s}
+regress logpgp95 lpd1500s, beta
+```
+
+ 
+# Multiple Regression
+
+Multiple regression -- add more terms.
+
+```{s}
+reg logpgp95 lpd1500s sjb1000
+```
+
+What if explanatory variable is a categorical?
+
+```{s}
+tab continent
+```
+
+```{s}
+reg logpgp95 lpd1500s sjb1000 continent
+```
+(what's wrong with this?)
+
+
+```{s}
+reg logpgp95 lpd1500s sjb1000 i.continent
+```
+
+# Prediction
+
+Create a new variable in dataset
+
+```{s}
+reg logpgp95 lpd1500s sjb1000 i.continent
+predict yhat
+summarize logpgp95 yhat 
+```
+
+Or residuals 
+```{s}
+predict residuals, residuals
+
+summarize logpgp95 yhat residuals
+```
+
+
+# Formatting Regression Tables 
+
+Instead of copy-pasting Stata output, use designated commands:
+
+```{s}
+reg logpgp95 lpd1500s sjb1000
+esttab
+
+```
+
+
+```{s}
+eststo clear // clear estimated tables
+eststo: reg logpgp95 lpd1500s
+eststo: reg logpgp95 lpd1500s sjb1000
+eststo: reg logpgp95 lpd1500s sjb1000 i.continent
+esttab
+```
+
+With more formats (<http://repec.org/bocode/e/estout/esttab.html>)
+
+```{s}
+esttab, label b(2) se(a1) r2 ar2
+```
